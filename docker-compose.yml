@@ -22,6 +22,8 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+      target: deps
+      pull: true
     container_name: process-map-backend
     working_dir: /app
     command: sh -c "npm run prisma:generate && npm run prisma:push && npm run dev"
