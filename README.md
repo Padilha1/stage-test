@@ -4,12 +4,29 @@ Monorepo com:
 - `backend/` (Fastify + Prisma + MySQL)
 - `mobile/` (Expo + React Native)
 
-## Precisa enviar `.env`?
-Não. Para entrega, envie apenas os arquivos de exemplo:
-- `backend/.env.example`
-- `mobile/.env.example`
+## Arquitetura (visão gráfica)
+- Fonte do diagrama: `docs/arquitetura.mmd`
+- Para apresentação, exporte para PNG/SVG e adicione em `docs/` (ex.: `docs/arquitetura.png`).
 
-Os arquivos reais `.env` ficam locais e não devem ir para o repositório.
+```mermaid
+flowchart LR
+  M[Mobile<br/>Expo + React Native] -->|HTTP JSON| A[Backend API<br/>Fastify]
+  A --> R[Routes]
+  R --> C[Controllers]
+  C --> S[Services]
+  S --> P[Prisma Client]
+  P --> DB[(MySQL)]
+  A --> SW[Swagger<br/>/docs]
+
+  subgraph D[Docker Compose]
+    A
+    DB
+  end
+
+  subgraph L[Execução local]
+    M
+  end
+```
 
 ## Requisitos
 - Docker + Docker Compose
@@ -64,8 +81,3 @@ npm run dev
 ## Observação de rede (Expo)
 - iOS Simulator/Android Emulator: `EXPO_PUBLIC_API_URL=http://localhost:3000`
 - Dispositivo físico: use o IP da sua máquina, por exemplo `http://192.168.0.10:3000`
-
-## Documentação por módulo
-- backend: `backend/README.md`
-- mobile: `mobile/README.md`
-- visão técnica completa: `CODEX.md`
