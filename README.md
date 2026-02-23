@@ -5,9 +5,6 @@ Monorepo com:
 - `mobile/` (Expo + React Native)
 
 ## Arquitetura (visão gráfica)
-- Fonte do diagrama: `docs/arquitetura.mmd`
-- Para apresentação, exporte para PNG/SVG e adicione em `docs/` (ex.: `docs/arquitetura.png`).
-
 ```mermaid
 flowchart LR
   M[Mobile<br/>Expo + React Native] -->|HTTP JSON| A[Backend API<br/>Fastify]
